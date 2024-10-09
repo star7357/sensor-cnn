@@ -396,7 +396,8 @@ class Preprocessor:
         )
 
         # 새로운 컬럼(label) 추가
-        output_data["label"] = "not pressed"
+        output_data["category"] = category
+        output_data["label"] = category + " not pressed"
 
         # pressed_info에서 라벨링
         for trial, pressed_interval in self._pressed_info.items():
@@ -413,7 +414,9 @@ class Preprocessor:
                 & (output_data.index >= start_index_in_output)
                 & (output_data.index <= end_index_in_output),
                 "label",
-            ] = "pressed"
+            ] = (
+                category + " pressed"
+            )
 
         # 결과를 CSV 파일로 저장
         output_data.to_csv(output_path, index=False, header=True)
