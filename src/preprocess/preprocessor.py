@@ -392,12 +392,12 @@ class Preprocessor:
 
         # 데이터를 정규화
         output_data = self._normalize_data(
-            data, apply_cc0_norm=True, apply_minmax_scaler=False, apply_gaussian_filter=False
+            data, apply_cc0_norm=True, apply_minmax_scaler=True, apply_gaussian_filter=False
         )
 
         # 새로운 컬럼(label) 추가
         output_data["category"] = category
-        output_data["label"] = category + " not pressed"
+        output_data["label"] = "not pressed"
 
         # pressed_info에서 라벨링
         for trial, pressed_interval in self._pressed_info.items():
@@ -415,7 +415,7 @@ class Preprocessor:
                 & (output_data.index <= end_index_in_output),
                 "label",
             ] = (
-                category + " pressed"
+                "pressed"
             )
 
         # 결과를 CSV 파일로 저장
