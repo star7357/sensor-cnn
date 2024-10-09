@@ -416,5 +416,5 @@ class Preprocessor:
             ] = "pressed"
 
         # 결과를 CSV 파일로 저장
-        output_data.to_csv(output_path, index=False)
+        output_data.to_csv(output_path, index=False, header=True)
         print(f"Preprocessed data saved in {output_path}")
